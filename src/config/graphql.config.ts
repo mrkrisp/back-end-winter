@@ -1,17 +1,17 @@
-import { ApolloDriverConfig } from '@nestjs/apollo'
-import { ConfigService } from '@nestjs/config'
-import { Request, Response } from 'express'
+import { ApolloDriverConfig } from '@nestjs/apollo';
+import { ConfigService } from '@nestjs/config';
+import { Request, Response } from 'express';
 
 interface GraphQLContext {
-	req: Request
-	res: Response
+  req: Request;
+  res: Response;
 }
 
 export const getGraphQLConfig = (
-	configService: ConfigService
+  configService: ConfigService
 ): ApolloDriverConfig => ({
-	autoSchemaFile: true,
-	sortSchema: true,
-	playground: configService.get<string>('MODE') !== 'development',
-	context: ({req, res}: GraphQLContext): GraphQLContext => ({req, res}),
-})
+  autoSchemaFile: true,
+  sortSchema: true,
+  playground: configService.get<string>('MODE') !== 'development',
+  context: ({ req, res }: GraphQLContext): GraphQLContext => ({ req, res }),
+});
