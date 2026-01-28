@@ -12,6 +12,6 @@ export const getGraphQLConfig = (
 ): ApolloDriverConfig => ({
   autoSchemaFile: true,
   sortSchema: true,
-  playground: configService.get<string>('MODE') !== 'development',
+  playground: configService.get<string>('MODE') === 'development',
   context: ({ req, res }: GraphQLContext): GraphQLContext => ({ req, res }),
 });

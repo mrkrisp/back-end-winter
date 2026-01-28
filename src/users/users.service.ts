@@ -1,11 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service'
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class UsersService {
-	constructor(
-		private readonly prisma: PrismaService
-	) {
+  constructor(private readonly prisma: PrismaService) {}
 
-	}
+  findByEmail(email: string) {
+    return this.prisma.user.findFirst({
+      where: {
+        email: {
+          equals: email,
+          mode: 'insensitive',
+        },
+      },
+    });
+  }
 }
