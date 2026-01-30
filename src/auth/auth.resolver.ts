@@ -1,8 +1,9 @@
-import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
-import type { IGqlContext } from 'src/app.interface';
-import { AuthInput } from './auth.input';
-import { AuthResponse } from './auth.interface';
-import { AuthService } from './auth.service';
+import { BadRequestException } from '@nestjs/common'
+import { Args, Context, Mutation, Resolver } from '@nestjs/graphql'
+import type { IGqlContext } from 'src/app.interface'
+import { AuthInput } from './auth.input'
+import { AuthResponse } from './auth.interface'
+import { AuthService } from './auth.service'
 
 @Resolver()
 export class AuthResolver {
@@ -13,20 +14,51 @@ export class AuthResolver {
     @Args('data') input: AuthInput,
     @Context() { res }: IGqlContext
   ) {
-    const { refreshToken, ...response } =
-      await this.authService.register(input);
+    const { refreshToken, ...response } = await this.authService.register(input)
 
-    this.authService.toggleRefreshTokenCookie(res, refreshToken);
+    this.authService.toggleRefreshTokenCookie(res, refreshToken)
 
-    return response;
+    return response
   }
 
   @Mutation(() => AuthResponse)
   async login(@Args('data') input: AuthInput, @Context() { res }: IGqlContext) {
-    const { refreshToken, ...response } = await this.authService.login(input);
+    const { refreshToken, ...response } = await this.authService.login(input)
 
-    this.authService.toggleRefreshTokenCookie(res, refreshToken);
+    this.authService.toggleRefreshTokenCookie(res, refreshToken)
 
-    return response;
+    return response
+  }
+
+  @Mutation(() => AuthResponse)
+  async newTokens(@Context() { req, res }: IGqlContext) {
+    const initialRefreshToken =
+      req.cookies?.[this.authService.REFRESH_TOKEN_NAME]
+
+    if (!initialRefreshToken) {
+      this.authService.toggleRefreshTokenCookie(res, null)
+      throw new BadRequestException('Refresh token is missing')
+    }
+
+    const { refreshToken, ...response } =
+      await this.authService.getNewTokens(initialRefreshToken)
+
+    this.authService.toggleRefreshTokenCookie(res, refreshToken)
+
+    return response
+  }
+
+  @Mutation(() => Boolean)
+  logout(@Context() { req, res }: IGqlContext) {
+    const initialRefreshToken = req.cookies[this.authService.REFRESH_TOKEN_NAME]
+
+    if (!initialRefreshToken) {
+      this.authService.toggleRefreshTokenCookie(res, null)
+      throw new BadRequestException('Refresh token is missing')
+    }
+
+    this.authService.toggleRefreshTokenCookie(res, null)
+
+    return true
   }
 }
