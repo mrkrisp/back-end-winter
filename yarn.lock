@@ -5463,10 +5463,10 @@ pretty-format@30.2.0, pretty-format@^30.0.0:
     ansi-styles "^5.2.0"
     react-is "^18.3.1"
 
-prisma-graphql-type-decimal@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/prisma-graphql-type-decimal/-/prisma-graphql-type-decimal-3.0.1.tgz#0ad2a9b2475fa4ef38e618a21f8be5e574417cbd"
-  integrity sha512-zkMTsZi3sesQI4HOi1fNVw9UtFC3opt4KS4gpjkJ38pFILjNNrjUIyiSFCOBxwKQtjXnaWhFQvP3To0ckZvysQ==
+prisma-graphql-type-decimal@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/prisma-graphql-type-decimal/-/prisma-graphql-type-decimal-4.0.2.tgz#4b184792dff1d55e07f7f0d2cbc1c46c0efc510c"
+  integrity sha512-t6phv7G2+OVXiI337R5kbCl9Eua/E1Mq3FIZAyzhJOkOh+L33H1tJIiY5bVC8uUzOnJBe24Xh+ZwyWItuWfcnA==
 
 prisma-nestjs-graphql@^21.2.0:
   version "21.2.0"

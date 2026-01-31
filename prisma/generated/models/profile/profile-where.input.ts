@@ -1,0 +1,48 @@
+import { Field } from '@nestjs/graphql';
+import { InputType } from '@nestjs/graphql';
+import { StringFilter } from '../prisma/string-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
+import { EnumGenderNullableFilter } from '../prisma/enum-gender-nullable-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
+
+@InputType()
+export class ProfileWhereInput {
+
+    @Field(() => [ProfileWhereInput], {nullable:true})
+    AND?: Array<ProfileWhereInput>;
+
+    @Field(() => [ProfileWhereInput], {nullable:true})
+    OR?: Array<ProfileWhereInput>;
+
+    @Field(() => [ProfileWhereInput], {nullable:true})
+    NOT?: Array<ProfileWhereInput>;
+
+    @Field(() => StringFilter, {nullable:true})
+    id?: StringFilter;
+
+    @Field(() => StringFilter, {nullable:true})
+    fullName?: StringFilter;
+
+    @Field(() => IntNullableFilter, {nullable:true})
+    age?: IntNullableFilter;
+
+    @Field(() => StringNullableFilter, {nullable:true})
+    bio?: StringNullableFilter;
+
+    @Field(() => EnumGenderNullableFilter, {nullable:true})
+    gender?: EnumGenderNullableFilter;
+
+    @Field(() => StringFilter, {nullable:true})
+    userId?: StringFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
+
+    @Field(() => UserScalarRelationFilter, {nullable:true})
+    user?: UserScalarRelationFilter;
+}
