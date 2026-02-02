@@ -1,10 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common'
 import { hash } from 'argon2'
-import type { UserUpdateInput } from 'prisma/generated/models/user/user-update.input'
 
 import type { Prisma } from 'prisma/generated/prisma/client'
 
 import { PrismaService } from 'src/prisma/prisma.service'
+import { UserUpdateInput } from './inputs/user-update.input'
 
 @Injectable()
 export class UsersService {
@@ -43,10 +47,21 @@ export class UsersService {
     })
   }
 
+  async create(email: string, password: string) {
+    const existingUser = await this.findByEmail(email)
+
+    if (existingUser) throw new BadRequestException('User is already exists')
+
+    return this.prisma.user.create({
+      data: {
+        email,
+        password: await hash(password),
+      },
+    })
+  }
+
   async updateProfile(id: string, input: UserUpdateInput) {
     const { profile, measurements, password, ...data } = input
-
-    await this.findById(id)
 
     const updateProfile: Prisma.XOR<
       Prisma.UserUpdateInput,

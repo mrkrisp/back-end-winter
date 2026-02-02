@@ -5,13 +5,13 @@ import {
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
-import { hash, verify } from 'argon2'
+import { verify } from 'argon2'
 import { Response } from 'express'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { UsersService } from 'src/users/users.service'
 import { isDev } from 'src/utils/is-dev.util'
 import { AuthInput } from './auth.input'
-import { IAuthTokenData } from './auth.interface'
+import type { TAuthTokenData } from './auth.interface'
 
 @Injectable()
 export class AuthService {
@@ -29,18 +29,7 @@ export class AuthService {
     try {
       const email = input.email.toLowerCase()
 
-      const existingUser = await this.userService.findByEmail(email)
-
-      if (existingUser) {
-        throw new BadRequestException('User with this email already exists')
-      }
-
-      const user = await this.prisma.user.create({
-        data: {
-          email: email,
-          password: await hash(input.password),
-        },
-      })
+      const user = await this.userService.create(email, input.password)
 
       const tokens = this.generateTokens({
         id: user.id,
@@ -82,7 +71,7 @@ export class AuthService {
   }
 
   async getNewTokens(refreshToken: string) {
-    const result = await this.jwt.verifyAsync<IAuthTokenData>(refreshToken)
+    const result = await this.jwt.verifyAsync<TAuthTokenData>(refreshToken)
     if (!result) throw new BadRequestException('Invalid refresh token')
 
     const user = await this.userService.findById(result.id)
@@ -97,7 +86,7 @@ export class AuthService {
     return { user, ...tokens }
   }
 
-  private generateTokens(data: IAuthTokenData) {
+  private generateTokens(data: TAuthTokenData) {
     const accessToken = this.jwt.sign(data, {
       expiresIn: '1h',
     })

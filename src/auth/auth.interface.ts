@@ -1,22 +1,18 @@
 import { Field, ObjectType } from '@nestjs/graphql'
-import { Role } from 'prisma/generated/prisma/enums'
-import { UserProfileModel } from 'src/users/models/user-profile.model'
+import { User } from 'prisma/generated/graphql/user'
 
-export type ICurrentUser = Omit<UserProfileModel, 'password'>
+export type TCurrentUser = Omit<User, 'password'>
 
 export type IRequestWithUser = {
-  user?: ICurrentUser
+  user?: TCurrentUser
 }
 
-export interface IAuthTokenData {
-  id: string
-  role: Role
-}
+export type TAuthTokenData = Pick<User, 'id' | 'role'>
 
 @ObjectType()
 export class AuthResponse {
-  @Field(() => UserProfileModel)
-  user: UserProfileModel
+  @Field(() => User)
+  user: User
 
   @Field()
   accessToken: string

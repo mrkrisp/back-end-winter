@@ -1,9 +1,10 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
-import type { UserUpdateInput } from 'prisma/generated/models/user/user-update.input'
-import { User } from 'prisma/generated/models/user/user.model'
+
+import { User } from 'prisma/generated/graphql/user'
 import { Role } from 'prisma/generated/prisma/enums'
 import { Auth } from 'src/auth/decorators/auth.decorator'
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator'
+import { UserUpdateInput } from './inputs/user-update.input'
 import { UsersService } from './users.service'
 
 @Resolver()
@@ -17,7 +18,7 @@ export class UsersResolver {
   }
 
   @Auth()
-  @Mutation(() => User, { name: 'updateProfile' })
+  @Mutation(() => User)
   async updateProfile(
     @CurrentUser('id') id: string,
     @Args('data') input: UserUpdateInput

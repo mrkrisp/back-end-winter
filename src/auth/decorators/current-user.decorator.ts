@@ -1,10 +1,10 @@
 import { createParamDecorator, ExecutionContext } from '@nestjs/common'
 import { GqlExecutionContext } from '@nestjs/graphql'
-import { ICurrentUser, IRequestWithUser } from '../auth.interface'
+import { IRequestWithUser, type TCurrentUser } from '../auth.interface'
 
 export const CurrentUser = createParamDecorator(
-  (data: keyof ICurrentUser, ctx: ExecutionContext) => {
-    let user: ICurrentUser | null | undefined = null
+  (data: keyof TCurrentUser, ctx: ExecutionContext) => {
+    let user: TCurrentUser | null | undefined = null
 
     if (ctx.getType() === 'http') {
       user = ctx.switchToHttp().getRequest<IRequestWithUser>().user
