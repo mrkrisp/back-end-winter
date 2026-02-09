@@ -32,19 +32,19 @@ export class RecipeUpdateManyWithoutAuthorNestedInput {
 
     @Field(() => [RecipeWhereUniqueInput], {nullable:true})
     @Type(() => RecipeWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>>;
+    set?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>>;
 
     @Field(() => [RecipeWhereUniqueInput], {nullable:true})
     @Type(() => RecipeWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>>;
+    disconnect?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>>;
 
     @Field(() => [RecipeWhereUniqueInput], {nullable:true})
     @Type(() => RecipeWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>>;
+    delete?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>>;
 
     @Field(() => [RecipeWhereUniqueInput], {nullable:true})
     @Type(() => RecipeWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>>;
 
     @Field(() => [RecipeUpdateWithWhereUniqueWithoutAuthorInput], {nullable:true})
     @Type(() => RecipeUpdateWithWhereUniqueWithoutAuthorInput)

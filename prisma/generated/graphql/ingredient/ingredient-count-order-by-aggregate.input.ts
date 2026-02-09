@@ -9,10 +9,13 @@ export class IngredientCountOrderByAggregateInput {
     id?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
+    iconUrl?: `${SortOrder}`;
+
+    @Field(() => SortOrder, {nullable:true})
     name?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    defaultUnit?: `${SortOrder}`;
+    description?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
     createdAt?: `${SortOrder}`;

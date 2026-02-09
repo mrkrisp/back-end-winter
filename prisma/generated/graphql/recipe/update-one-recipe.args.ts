@@ -14,5 +14,5 @@ export class UpdateOneRecipeArgs {
 
     @Field(() => RecipeWhereUniqueInput, {nullable:false})
     @Type(() => RecipeWhereUniqueInput)
-    where!: Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>;
+    where!: Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>;
 }

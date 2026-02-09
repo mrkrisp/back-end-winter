@@ -25,7 +25,7 @@ export class RecipeUpdateOneRequiredWithoutRecipeIngredientsNestedInput {
 
     @Field(() => RecipeWhereUniqueInput, {nullable:true})
     @Type(() => RecipeWhereUniqueInput)
-    connect?: Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>;
+    connect?: Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>;
 
     @Field(() => RecipeUpdateToOneWithWhereWithoutRecipeIngredientsInput, {nullable:true})
     @Type(() => RecipeUpdateToOneWithWhereWithoutRecipeIngredientsInput)

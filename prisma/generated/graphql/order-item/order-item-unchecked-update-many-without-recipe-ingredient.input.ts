@@ -11,6 +11,9 @@ export class OrderItemUncheckedUpdateManyWithoutRecipeIngredientInput {
     @Field(() => Int, {nullable:true})
     quantity?: number;
 
+    @Field(() => String, {nullable:true})
+    price?: string;
+
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 

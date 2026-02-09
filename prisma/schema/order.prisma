@@ -16,8 +16,10 @@ model OrderItem {
   id String @id @default(cuid())
 
   recipeIngredient   RecipeIngredient @relation(fields: [recipeIngredientId], references: [id])
-  recipeIngredientId String @map("recipe_ingredient_id")
-  quantity           Int @default(1)
+  recipeIngredientId String           @map("recipe_ingredient_id")
+
+  quantity Decimal? @default(1)
+  price    Decimal
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -28,8 +30,8 @@ model OrderItem {
 model Courier {
   id String @id @default(cuid())
 
-	name String
-	phoneNumber String @map("phone_number")
+  name        String
+  phoneNumber String @map("phone_number")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

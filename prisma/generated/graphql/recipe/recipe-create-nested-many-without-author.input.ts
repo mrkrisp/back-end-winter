@@ -24,5 +24,5 @@ export class RecipeCreateNestedManyWithoutAuthorInput {
 
     @Field(() => [RecipeWhereUniqueInput], {nullable:true})
     @Type(() => RecipeWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>>;
+    connect?: Array<Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>>;
 }

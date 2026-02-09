@@ -8,10 +8,13 @@ export class IngredientCountAggregateInput {
     id?: true;
 
     @Field(() => Boolean, {nullable:true})
+    iconUrl?: true;
+
+    @Field(() => Boolean, {nullable:true})
     name?: true;
 
     @Field(() => Boolean, {nullable:true})
-    defaultUnit?: true;
+    description?: true;
 
     @Field(() => Boolean, {nullable:true})
     createdAt?: true;

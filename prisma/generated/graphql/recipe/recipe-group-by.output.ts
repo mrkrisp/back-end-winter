@@ -15,6 +15,9 @@ export class RecipeGroupBy {
     id!: string;
 
     @Field(() => String, {nullable:false})
+    slug!: string;
+
+    @Field(() => String, {nullable:false})
     title!: string;
 
     @Field(() => String, {nullable:false})

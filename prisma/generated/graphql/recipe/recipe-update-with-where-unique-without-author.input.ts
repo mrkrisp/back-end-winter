@@ -10,7 +10,7 @@ export class RecipeUpdateWithWhereUniqueWithoutAuthorInput {
 
     @Field(() => RecipeWhereUniqueInput, {nullable:false})
     @Type(() => RecipeWhereUniqueInput)
-    where!: Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>;
+    where!: Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>;
 
     @Field(() => RecipeUpdateWithoutAuthorInput, {nullable:false})
     @Type(() => RecipeUpdateWithoutAuthorInput)

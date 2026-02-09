@@ -23,23 +23,11 @@ export class RecipeIngredientWhereInput {
     @Field(() => StringFilter, {nullable:true})
     id?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    iconUrl?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    name?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    description?: StringFilter;
-
     @Field(() => FloatFilter, {nullable:true})
     quantity?: FloatFilter;
 
     @Field(() => EnumUnitFilter, {nullable:true})
     unit?: EnumUnitFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    price?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
     recipeId?: StringFilter;

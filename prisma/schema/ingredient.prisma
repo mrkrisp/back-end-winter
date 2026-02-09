@@ -1,0 +1,14 @@
+model Ingredient {
+  id String @id @default(cuid())
+
+  iconUrl     String @map("icon_url")
+  name        String
+  description String
+
+  recipeIngredients RecipeIngredient[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("ingredients")
+}

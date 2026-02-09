@@ -10,10 +10,13 @@ export class IngredientOrderByWithRelationInput {
     id?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
+    iconUrl?: `${SortOrder}`;
+
+    @Field(() => SortOrder, {nullable:true})
     name?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    defaultUnit?: `${SortOrder}`;
+    description?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
     createdAt?: `${SortOrder}`;
@@ -22,5 +25,5 @@ export class IngredientOrderByWithRelationInput {
     updatedAt?: `${SortOrder}`;
 
     @Field(() => RecipeIngredientOrderByRelationAggregateInput, {nullable:true})
-    recipes?: RecipeIngredientOrderByRelationAggregateInput;
+    recipeIngredients?: RecipeIngredientOrderByRelationAggregateInput;
 }

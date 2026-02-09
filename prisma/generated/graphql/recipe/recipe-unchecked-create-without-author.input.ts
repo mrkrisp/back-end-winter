@@ -2,8 +2,10 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Difficulty } from '../prisma/difficulty.enum';
+import { RecipeTagUncheckedCreateNestedManyWithoutRecipesInput } from '../recipe-tag/recipe-tag-unchecked-create-nested-many-without-recipes.input';
 import { RecipeIngredientUncheckedCreateNestedManyWithoutRecipeInput } from '../recipe-ingredient/recipe-ingredient-unchecked-create-nested-many-without-recipe.input';
 import { RecipeStepUncheckedCreateNestedManyWithoutRecipeInput } from '../recipe-step/recipe-step-unchecked-create-nested-many-without-recipe.input';
+import { NutritionFactUncheckedCreateNestedOneWithoutRecipeInput } from '../nutrition-fact/nutrition-fact-unchecked-create-nested-one-without-recipe.input';
 import { CommentUncheckedCreateNestedManyWithoutRecipeInput } from '../comment/comment-unchecked-create-nested-many-without-recipe.input';
 import { LikeUncheckedCreateNestedManyWithoutRecipeInput } from '../like/like-unchecked-create-nested-many-without-recipe.input';
 
@@ -12,6 +14,9 @@ export class RecipeUncheckedCreateWithoutAuthorInput {
 
     @Field(() => String, {nullable:true})
     id?: string;
+
+    @Field(() => String, {nullable:false})
+    slug!: string;
 
     @Field(() => String, {nullable:false})
     title!: string;
@@ -34,11 +39,17 @@ export class RecipeUncheckedCreateWithoutAuthorInput {
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 
+    @Field(() => RecipeTagUncheckedCreateNestedManyWithoutRecipesInput, {nullable:true})
+    tags?: RecipeTagUncheckedCreateNestedManyWithoutRecipesInput;
+
     @Field(() => RecipeIngredientUncheckedCreateNestedManyWithoutRecipeInput, {nullable:true})
     recipeIngredients?: RecipeIngredientUncheckedCreateNestedManyWithoutRecipeInput;
 
     @Field(() => RecipeStepUncheckedCreateNestedManyWithoutRecipeInput, {nullable:true})
     recipeSteps?: RecipeStepUncheckedCreateNestedManyWithoutRecipeInput;
+
+    @Field(() => NutritionFactUncheckedCreateNestedOneWithoutRecipeInput, {nullable:true})
+    nutritionFact?: NutritionFactUncheckedCreateNestedOneWithoutRecipeInput;
 
     @Field(() => CommentUncheckedCreateNestedManyWithoutRecipeInput, {nullable:true})
     comments?: CommentUncheckedCreateNestedManyWithoutRecipeInput;

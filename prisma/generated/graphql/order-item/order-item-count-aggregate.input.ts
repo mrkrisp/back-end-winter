@@ -14,6 +14,9 @@ export class OrderItemCountAggregateInput {
     quantity?: true;
 
     @Field(() => Boolean, {nullable:true})
+    price?: true;
+
+    @Field(() => Boolean, {nullable:true})
     createdAt?: true;
 
     @Field(() => Boolean, {nullable:true})

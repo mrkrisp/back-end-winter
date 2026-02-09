@@ -2,9 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { RecipeIngredientRecipeIdIngredientIdCompoundUniqueInput } from './recipe-ingredient-recipe-id-ingredient-id-compound-unique.input';
 import { RecipeIngredientWhereInput } from './recipe-ingredient-where.input';
-import { StringFilter } from '../prisma/string-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { EnumUnitFilter } from '../prisma/enum-unit-filter.input';
+import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { RecipeScalarRelationFilter } from '../recipe/recipe-scalar-relation-filter.input';
 import { IngredientScalarRelationFilter } from '../ingredient/ingredient-scalar-relation-filter.input';
@@ -28,23 +28,11 @@ export class RecipeIngredientWhereUniqueInput {
     @Field(() => [RecipeIngredientWhereInput], {nullable:true})
     NOT?: Array<RecipeIngredientWhereInput>;
 
-    @Field(() => StringFilter, {nullable:true})
-    iconUrl?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    name?: StringFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    description?: StringFilter;
-
     @Field(() => FloatFilter, {nullable:true})
     quantity?: FloatFilter;
 
     @Field(() => EnumUnitFilter, {nullable:true})
     unit?: EnumUnitFilter;
-
-    @Field(() => StringFilter, {nullable:true})
-    price?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
     recipeId?: StringFilter;

@@ -8,6 +8,9 @@ export class RecipeCountAggregateInput {
     id?: true;
 
     @Field(() => Boolean, {nullable:true})
+    slug?: true;
+
+    @Field(() => Boolean, {nullable:true})
     title?: true;
 
     @Field(() => Boolean, {nullable:true})

@@ -10,7 +10,7 @@ export class RecipeCreateOrConnectWithoutLikesInput {
 
     @Field(() => RecipeWhereUniqueInput, {nullable:false})
     @Type(() => RecipeWhereUniqueInput)
-    where!: Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>;
+    where!: Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>;
 
     @Field(() => RecipeCreateWithoutLikesInput, {nullable:false})
     @Type(() => RecipeCreateWithoutLikesInput)

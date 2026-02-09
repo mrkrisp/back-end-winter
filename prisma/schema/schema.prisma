@@ -10,19 +10,19 @@ generator client {
   moduleFormat = "cjs"
 }
 
-generator models {
-  provider           = "node node_modules/prisma-nestjs-graphql"
-  output             = "../generated/graphql"
-  moduleFormat       = "cjs"
-  prismaClientImport = "prisma/generated/prisma/client"
-
-  reExport = Directories
-
-  omitModelsCount = true
-  noAtomicOperations = true
-  requireSingleFieldsInWhereUniqueInput = true
-  combineScalarFilters = true
-}
+// generator models {
+//   provider           = "node node_modules/prisma-nestjs-graphql"
+//   output             = "../generated/graphql"
+//   moduleFormat       = "cjs"
+//   prismaClientImport = "prisma/generated/prisma/client"
+//
+//   reExport = Directories
+//
+//   omitModelsCount = true
+//   noAtomicOperations = true
+//   requireSingleFieldsInWhereUniqueInput = true
+//   combineScalarFilters = true
+// }
 
 datasource db {
   provider = "postgresql"

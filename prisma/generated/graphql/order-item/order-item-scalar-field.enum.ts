@@ -4,6 +4,7 @@ export enum OrderItemScalarFieldEnum {
     id = "id",
     recipeIngredientId = "recipeIngredientId",
     quantity = "quantity",
+    price = "price",
     createdAt = "createdAt",
     updatedAt = "updatedAt"
 }

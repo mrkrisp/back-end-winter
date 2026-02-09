@@ -20,23 +20,11 @@ export class RecipeIngredientScalarWhereWithAggregatesInput {
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     id?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    iconUrl?: StringWithAggregatesFilter;
-
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    name?: StringWithAggregatesFilter;
-
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    description?: StringWithAggregatesFilter;
-
     @Field(() => FloatWithAggregatesFilter, {nullable:true})
     quantity?: FloatWithAggregatesFilter;
 
     @Field(() => EnumUnitWithAggregatesFilter, {nullable:true})
     unit?: EnumUnitWithAggregatesFilter;
-
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    price?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     recipeId?: StringWithAggregatesFilter;

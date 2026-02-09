@@ -15,6 +15,9 @@ export class OrderItemCountOrderByAggregateInput {
     quantity?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
+    price?: `${SortOrder}`;
+
+    @Field(() => SortOrder, {nullable:true})
     createdAt?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})

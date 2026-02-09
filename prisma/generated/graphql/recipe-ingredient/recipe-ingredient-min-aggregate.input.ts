@@ -8,22 +8,10 @@ export class RecipeIngredientMinAggregateInput {
     id?: true;
 
     @Field(() => Boolean, {nullable:true})
-    iconUrl?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    name?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    description?: true;
-
-    @Field(() => Boolean, {nullable:true})
     quantity?: true;
 
     @Field(() => Boolean, {nullable:true})
     unit?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    price?: true;
 
     @Field(() => Boolean, {nullable:true})
     recipeId?: true;

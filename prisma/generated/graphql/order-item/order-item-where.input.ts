@@ -26,6 +26,9 @@ export class OrderItemWhereInput {
     @Field(() => IntFilter, {nullable:true})
     quantity?: IntFilter;
 
+    @Field(() => StringFilter, {nullable:true})
+    price?: StringFilter;
+
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;
 

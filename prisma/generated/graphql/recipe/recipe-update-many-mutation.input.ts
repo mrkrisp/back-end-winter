@@ -10,6 +10,9 @@ export class RecipeUpdateManyMutationInput {
     id?: string;
 
     @Field(() => String, {nullable:true})
+    slug?: string;
+
+    @Field(() => String, {nullable:true})
     title?: string;
 
     @Field(() => String, {nullable:true})

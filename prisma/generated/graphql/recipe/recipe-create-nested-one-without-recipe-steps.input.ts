@@ -19,5 +19,5 @@ export class RecipeCreateNestedOneWithoutRecipeStepsInput {
 
     @Field(() => RecipeWhereUniqueInput, {nullable:true})
     @Type(() => RecipeWhereUniqueInput)
-    connect?: Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>;
+    connect?: Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>;
 }

@@ -1,6 +1,5 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
-import { Unit } from '../prisma/unit.enum';
 import { IngredientCountAggregate } from './ingredient-count-aggregate.output';
 import { IngredientMinAggregate } from './ingredient-min-aggregate.output';
 import { IngredientMaxAggregate } from './ingredient-max-aggregate.output';
@@ -12,10 +11,13 @@ export class IngredientGroupBy {
     id!: string;
 
     @Field(() => String, {nullable:false})
+    iconUrl!: string;
+
+    @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => Unit, {nullable:false})
-    defaultUnit!: `${Unit}`;
+    @Field(() => String, {nullable:false})
+    description!: string;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date | string;

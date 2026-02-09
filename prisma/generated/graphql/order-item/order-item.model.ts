@@ -13,8 +13,11 @@ export class OrderItem {
     @Field(() => String, {nullable:false})
     recipeIngredientId!: string;
 
-    @Field(() => Int, {defaultValue:1,nullable:false})
-    quantity!: number;
+    @Field(() => Int, {defaultValue:1,nullable:true})
+    quantity!: number | null;
+
+    @Field(() => String, {nullable:false})
+    price!: string;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date;

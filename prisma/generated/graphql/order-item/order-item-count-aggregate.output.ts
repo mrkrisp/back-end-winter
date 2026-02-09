@@ -15,6 +15,9 @@ export class OrderItemCountAggregate {
     quantity!: number;
 
     @Field(() => Int, {nullable:false})
+    price!: number;
+
+    @Field(() => Int, {nullable:false})
     createdAt!: number;
 
     @Field(() => Int, {nullable:false})

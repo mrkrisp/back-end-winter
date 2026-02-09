@@ -16,8 +16,11 @@ export class OrderItemGroupBy {
     @Field(() => String, {nullable:false})
     recipeIngredientId!: string;
 
-    @Field(() => Int, {nullable:false})
-    quantity!: number;
+    @Field(() => Int, {nullable:true})
+    quantity?: number;
+
+    @Field(() => String, {nullable:false})
+    price!: string;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date | string;

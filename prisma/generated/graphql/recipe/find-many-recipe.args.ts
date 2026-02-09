@@ -19,7 +19,7 @@ export class FindManyRecipeArgs {
     orderBy?: Array<RecipeOrderByWithRelationInput>;
 
     @Field(() => RecipeWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<RecipeWhereUniqueInput, 'id'>;
+    cursor?: Prisma.AtLeast<RecipeWhereUniqueInput, 'id' | 'slug'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

@@ -9,10 +9,13 @@ export class IngredientCountAggregate {
     id!: number;
 
     @Field(() => Int, {nullable:false})
+    iconUrl!: number;
+
+    @Field(() => Int, {nullable:false})
     name!: number;
 
     @Field(() => Int, {nullable:false})
-    defaultUnit!: number;
+    description!: number;
 
     @Field(() => Int, {nullable:false})
     createdAt!: number;

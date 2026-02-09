@@ -10,23 +10,11 @@ export class RecipeIngredientUncheckedCreateWithoutRecipeInput {
     @Field(() => String, {nullable:true})
     id?: string;
 
-    @Field(() => String, {nullable:false})
-    iconUrl!: string;
-
-    @Field(() => String, {nullable:false})
-    name!: string;
-
-    @Field(() => String, {nullable:false})
-    description!: string;
-
     @Field(() => Float, {nullable:false})
     quantity!: number;
 
-    @Field(() => Unit, {nullable:false})
-    unit!: `${Unit}`;
-
-    @Field(() => String, {nullable:false})
-    price!: string;
+    @Field(() => Unit, {nullable:true})
+    unit?: `${Unit}`;
 
     @Field(() => String, {nullable:false})
     ingredientId!: string;

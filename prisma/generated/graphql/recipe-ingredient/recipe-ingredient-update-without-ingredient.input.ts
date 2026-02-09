@@ -11,23 +11,11 @@ export class RecipeIngredientUpdateWithoutIngredientInput {
     @Field(() => String, {nullable:true})
     id?: string;
 
-    @Field(() => String, {nullable:true})
-    iconUrl?: string;
-
-    @Field(() => String, {nullable:true})
-    name?: string;
-
-    @Field(() => String, {nullable:true})
-    description?: string;
-
     @Field(() => Float, {nullable:true})
     quantity?: number;
 
     @Field(() => Unit, {nullable:true})
     unit?: `${Unit}`;
-
-    @Field(() => String, {nullable:true})
-    price?: string;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

@@ -9,22 +9,10 @@ export class RecipeIngredientCountAggregate {
     id!: number;
 
     @Field(() => Int, {nullable:false})
-    iconUrl!: number;
-
-    @Field(() => Int, {nullable:false})
-    name!: number;
-
-    @Field(() => Int, {nullable:false})
-    description!: number;
-
-    @Field(() => Int, {nullable:false})
     quantity!: number;
 
     @Field(() => Int, {nullable:false})
     unit!: number;
-
-    @Field(() => Int, {nullable:false})
-    price!: number;
 
     @Field(() => Int, {nullable:false})
     recipeId!: number;
