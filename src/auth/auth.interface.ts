@@ -1,19 +1,19 @@
 import { Field, ObjectType } from '@nestjs/graphql'
-import { User } from 'prisma/generated/graphql/user'
+import { UserModel } from 'src/users/models/user.model'
 
-export type TCurrentUser = Omit<User, 'password'>
+export type TCurrentUser = Omit<UserModel, 'password'>
 
 export type IRequestWithUser = {
-  user?: TCurrentUser
+	user?: TCurrentUser
 }
 
-export type TAuthTokenData = Pick<User, 'id' | 'role'>
+export type TAuthTokenData = Pick<UserModel, 'id' | 'role'>
 
 @ObjectType()
 export class AuthResponse {
-  @Field(() => User)
-  user: User
+	@Field(() => UserModel)
+	user: UserModel
 
-  @Field()
-  accessToken: string
+	@Field()
+	accessToken: string
 }

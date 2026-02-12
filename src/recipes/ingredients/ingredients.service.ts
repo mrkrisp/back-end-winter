@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common'
 import { PrismaService } from '../../prisma/prisma.service'
 import { IngredientCreateInput } from './inputs/ingredient-create.input'
+import { IngredientUpdateInput } from './inputs/ingredient-update.input'
 
 @Injectable()
 export class IngredientsService {
@@ -24,30 +25,33 @@ export class IngredientsService {
 		return ingredient
 	}
 
-	// async create(data: IngredientCreateInput) {
-	// 	const { name } = data
-	//
-	// 	const existingIngredient = await this.prisma.ingredient.findFirst({
-	// 		where: { name }
-	// 	})
-	//
-	// 	if (existingIngredient)
-	// 		throw new BadRequestException('Ingredient already exists')
-	//
-	// 	return this.prisma.ingredient.create({
-	// 		data
-	// 	})
-	// }
+	async create(data: IngredientCreateInput) {
+		const existingIngredient = await this.prisma.ingredient.findFirst({
+			where: { name: data.name }
+		})
+
+		if (existingIngredient)
+			throw new BadRequestException('Ingredient already exists')
+
+		return this.prisma.ingredient.create({
+			data
+		})
+	}
 
 	async deleteById(id: string) {
 		await this.findById(id)
 
-		return this.prisma.ingredient.delete({
+		const deletedIngredient = await this.prisma.ingredient.delete({
 			where: { id }
 		})
+
+		if (!deletedIngredient)
+			throw new BadRequestException('Ingredient was not deleted')
+
+		return true
 	}
 
-	async update(id: string, data: IngredientCreateInput) {
+	async update(id: string, data: IngredientUpdateInput) {
 		await this.findById(id)
 
 		return this.prisma.ingredient.update({

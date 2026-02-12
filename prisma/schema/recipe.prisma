@@ -7,6 +7,7 @@ model Recipe {
   calories    Int
   cookingTime Int        @map("cooking_time")
   difficulty  Difficulty
+  views       Int        @default(0)
 
   author   User   @relation(fields: [authorId], references: [id])
   authorId String @map("author_id")
@@ -31,7 +32,7 @@ model RecipeIngredient {
   quantity Decimal
   unit     Unit    @default(GRAM)
 
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   recipeId String @map("recipe_id")
 
   ingredient   Ingredient @relation(fields: [ingredientId], references: [id])
@@ -54,7 +55,7 @@ model NutritionFact {
   carbohydrates Decimal
   fiber         Decimal
 
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   recipeId String @unique @map("recipe_id")
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -82,7 +83,7 @@ model RecipeStep {
   title       String
   description String
 
-  recipe   Recipe @relation(fields: [recipeId], references: [id])
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   recipeId String @map("recipe_id")
 
   createdAt DateTime @default(now()) @map("created_at")

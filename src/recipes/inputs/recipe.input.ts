@@ -1,17 +1,8 @@
-import { Field, ID, registerEnumType } from '@nestjs/graphql'
-import { InputType } from '@nestjs/graphql'
-import { Int } from '@nestjs/graphql'
+import { Field, InputType, Int } from '@nestjs/graphql'
+import { Difficulty } from '../recipe.enum'
 import { NutritionFactUpdateInput } from './nutrition-fact.input'
+import { RecipeIngredientInput } from './recipe-ingredient.input'
 import { RecipeStepInput } from './recipe-step.input'
-
-export enum Difficulty {
-	EASY = 'EASY',
-	MEDIUM = 'MEDIUM',
-	HARD = 'HARD'
-}
-
-registerEnumType(Difficulty, { name: 'Difficulty', description: undefined })
-
 
 @InputType()
 export class RecipeCreateInput {
@@ -33,13 +24,50 @@ export class RecipeCreateInput {
 	@Field(() => Difficulty, { nullable: false })
 	difficulty!: `${Difficulty}`
 
-	@Field(() => String, { nullable: true })
+	@Field(() => [String], { nullable: true })
 	tags?: string[]
 
-	@Field(() => [ID], {
+	@Field(() => [RecipeIngredientInput], {
 		nullable: true
 	})
-	ingredientIds?: string[]
+	ingredients?: RecipeIngredientInput[]
+
+	@Field(() => [RecipeStepInput], { nullable: true })
+	recipeSteps?: RecipeStepInput[]
+
+	@Field(() => NutritionFactUpdateInput, {
+		nullable: true
+	})
+	nutritionFact?: NutritionFactUpdateInput
+}
+
+@InputType()
+export class RecipeUpdateInput {
+	@Field(() => String, { nullable: true })
+	slug?: string
+
+	@Field(() => String, { nullable: true })
+	title?: string
+
+	@Field(() => String, { nullable: true })
+	description?: string
+
+	@Field(() => Int, { nullable: true })
+	calories?: number
+
+	@Field(() => Int, { nullable: true })
+	cookingTime?: number
+
+	@Field(() => Difficulty, { nullable: true })
+	difficulty?: `${Difficulty}`
+
+	@Field(() => [String], { nullable: true })
+	tags?: string[]
+
+	@Field(() => [RecipeIngredientInput], {
+		nullable: true
+	})
+	ingredients?: RecipeIngredientInput[]
 
 	@Field(() => [RecipeStepInput], { nullable: true })
 	recipeSteps?: RecipeStepInput[]
