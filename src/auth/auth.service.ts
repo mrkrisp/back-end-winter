@@ -1,117 +1,118 @@
 import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
+	BadRequestException,
+	Injectable,
+	NotFoundException
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { verify } from 'argon2'
-import { Response } from 'express'
-import { PrismaService } from 'src/prisma/prisma.service'
+import { EmailService } from 'src/email/email.service'
 import { UsersService } from 'src/users/users.service'
-import { isDev } from 'src/utils/is-dev.util'
-import { AuthInput } from './auth.input'
+import { generateToken } from 'src/utils/generate-token.util'
+import  { AuthCookieService } from './auth-cookie.service'
 import type { TAuthTokenData } from './auth.interface'
+import { AuthInput } from './inputs/auth.input'
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private readonly prisma: PrismaService,
-    private configService: ConfigService,
-    private jwt: JwtService,
-    private userService: UsersService
-  ) {}
+	constructor(
+		private configService: ConfigService,
+		private jwt: JwtService,
+		private userService: UsersService,
+		private emailService: EmailService
+	) {}
 
-  private EXPIRE_DAY_REFRESH_TOKEN = 3
-  REFRESH_TOKEN_NAME = 'refreshToken'
+	private readonly EXPIRE_HOURS_ACCESS_TOKEN = 1
+	private readonly EXPIRE_DAYS_REFRESH_TOKEN = 3
 
-  async register(input: AuthInput) {
-    try {
-      const email = input.email.toLowerCase()
+	async register(input: AuthInput) {
+		const email = input.email.toLowerCase()
 
-      const user = await this.userService.create(email, input.password)
+		const emailVerificationToken = generateToken()
 
-      const tokens = this.generateTokens({
-        id: user.id,
-        role: user.role,
-      })
+		const user = await this.userService.create(
+			email,
+			input.password,
+			emailVerificationToken
+		)
 
-      return { user, ...tokens }
-    } catch (err) {
-      throw new BadRequestException('Registration failed: ' + err)
-    }
-  }
+		const tokens = this.generateTokens({
+			id: user.id,
+			role: user.role
+		})
 
-  async login(input: AuthInput) {
-    const user = await this.validateUser(input)
+		const verificationUrl = `${this.configService.getOrThrow<string>('CLIENT_URL')}/verify-email?token=${emailVerificationToken}`
 
-    const tokens = this.generateTokens({
-      id: user.id,
-      role: user.role,
-    })
+		await this.emailService.sendVerificationEmail(user.email, verificationUrl)
 
-    return { user, ...tokens }
-  }
+		return { user, ...tokens }
+	}
 
-  private async validateUser(input: AuthInput) {
-    const email = input.email
-    const user = await this.userService.findByEmail(email)
+	async login(input: AuthInput) {
+		const user = await this.validateUser(input)
 
-    if (!user) {
-      throw new NotFoundException('Invalid email or password')
-    }
+		const tokens = this.generateTokens({
+			id: user.id,
+			role: user.role
+		})
 
-    const isPasswordValid = await verify(user.password, input.password)
+		return { user, ...tokens }
+	}
 
-    if (!isPasswordValid) {
-      throw new NotFoundException('Invalid email or password')
-    }
+	private async validateUser(input: AuthInput) {
+		const email = input.email
+		const user = await this.userService.findByEmail(email)
 
-    return user
-  }
+		if (!user) {
+			throw new NotFoundException('Invalid email or password')
+		}
 
-  async getNewTokens(refreshToken: string) {
-    const result = await this.jwt.verifyAsync<TAuthTokenData>(refreshToken)
-    if (!result) throw new BadRequestException('Invalid refresh token')
+		const isPasswordValid = await verify(user.password, input.password)
 
-    const user = await this.userService.findById(result.id)
+		if (!isPasswordValid) {
+			throw new NotFoundException('Invalid email or password')
+		}
 
-    if (!user) throw new NotFoundException('User not found')
+		return user
+	}
 
-    const tokens = this.generateTokens({
-      id: user.id,
-      role: user.role,
-    })
+	async getNewTokens(refreshToken: string) {
+		const result = await this.jwt.verifyAsync<TAuthTokenData>(refreshToken)
+		if (!result) throw new BadRequestException('Invalid refresh token')
 
-    return { user, ...tokens }
-  }
+		const user = await this.userService.findById(result.id)
 
-  private generateTokens(data: TAuthTokenData) {
-    const accessToken = this.jwt.sign(data, {
-      expiresIn: '1h',
-    })
+		if (!user) throw new NotFoundException('User not found')
 
-    const refreshToken = this.jwt.sign(data, {
-      expiresIn: `${this.EXPIRE_DAY_REFRESH_TOKEN}d`,
-    })
+		const tokens = this.generateTokens({
+			id: user.id,
+			role: user.role
+		})
 
-    return { accessToken, refreshToken }
-  }
+		return { user, ...tokens }
+	}
 
-  toggleRefreshTokenCookie(response: Response, token: string | null) {
-    const isRemoveCookie = !token
-    const expiresIn = isRemoveCookie
-      ? new Date(0)
-      : new Date(
-          Date.now() + this.EXPIRE_DAY_REFRESH_TOKEN * 24 * 60 * 60 * 1000
-        )
+	private generateTokens(data: TAuthTokenData) {
+		const accessToken = this.jwt.sign(data, {
+			expiresIn: `${this.EXPIRE_HOURS_ACCESS_TOKEN}`
+		})
 
-    response.cookie(this.REFRESH_TOKEN_NAME, token || '', {
-      httpOnly: true,
-      domain: 'localhost',
-      expires: expiresIn,
-      sameSite: isDev(this.configService) ? 'none' : 'strict',
-      secure: true,
-    })
-  }
+		const refreshToken = this.jwt.sign(data, {
+			expiresIn: `${this.EXPIRE_DAYS_REFRESH_TOKEN}d`
+		})
+
+		return { accessToken, refreshToken }
+	}
+
+	getExpiresToken(
+		tokenName:
+			| AuthCookieService['ACCESS_TOKEN_NAME']
+			| AuthCookieService['REFRESH_TOKEN_NAME']
+	) {
+		if (tokenName === 'refreshToken') {
+			return this.EXPIRE_DAYS_REFRESH_TOKEN
+		} else {
+			return this.EXPIRE_HOURS_ACCESS_TOKEN
+		}
+	}
 }

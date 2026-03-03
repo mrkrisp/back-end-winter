@@ -4,18 +4,18 @@ import cookieParser from 'cookie-parser'
 import { AppModule } from './app.module'
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule)
+	const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
-  app.use(cookieParser())
+	app.use(cookieParser())
 
-  app.enableCors({
-    origin: ['http://localhost:4200'],
-    credentials: true,
-  })
+	app.enableCors({
+		origin: ['http://localhost:4200', 'http://localhost:3000'],
+		credentials: true
+	})
 
-  app.disable('x-powered-by')
+	app.disable('x-powered-by')
 
-  await app.listen(process.env.PORT ?? 4200)
+	await app.listen(process.env.PORT ?? 4200)
 }
 
 bootstrap()

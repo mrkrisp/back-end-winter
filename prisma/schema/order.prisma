@@ -5,7 +5,7 @@ model Order {
   status OrderStatus @default(PENDING)
   total Decimal
 
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @map("user_id")
 
   items OrderItem[]
@@ -19,7 +19,7 @@ model Order {
 model OrderItem {
   id String @id @default(cuid())
 
-  recipeIngredient   RecipeIngredient @relation(fields: [recipeIngredientId], references: [id])
+  recipeIngredient   RecipeIngredient @relation(fields: [recipeIngredientId], references: [id], onDelete: Cascade)
   recipeIngredientId String           @map("recipe_ingredient_id")
 
   quantity Decimal? @default(1)

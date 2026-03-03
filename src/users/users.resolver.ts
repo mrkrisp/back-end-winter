@@ -12,7 +12,7 @@ export class UsersResolver {
 	constructor(private readonly usersService: UsersService) {}
 
 	@Auth()
-	@Query(() => UserModel, { name: 'profile' })
+	@Query(() => UserModel, { name: 'me' })
 	getProfile(@CurrentUser('id') id: string) {
 		return this.usersService.findById(id)
 	}

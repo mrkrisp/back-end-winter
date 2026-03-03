@@ -47,7 +47,11 @@ export class UsersService {
 		})
 	}
 
-	async create(email: string, password: string) {
+	async create(
+		email: string,
+		password: string,
+		emailVerificationToken: string
+	) {
 		const existingUser = await this.findByEmail(email)
 
 		if (existingUser) throw new BadRequestException('User is already exists')
@@ -55,7 +59,9 @@ export class UsersService {
 		return this.prisma.user.create({
 			data: {
 				email,
-				password: await hash(password)
+				password: await hash(password),
+				emailVerificationToken,
+				emailVerificationTokenExpiresAt: new Date(Date.now() + 360000)
 			}
 		})
 	}

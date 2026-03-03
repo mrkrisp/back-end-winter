@@ -5,17 +5,23 @@ model User {
   password String
   role     Role   @default(USER)
 
+  isEmailVerified                 Boolean   @default(false) @map("is_email_verified")
+  emailVerificationToken          String?   @map("email_verification_token")
+  emailVerificationTokenExpiresAt DateTime? @map("email_verification_token_expires_at")
+
+  resetPasswordToken          String?   @map("reset_password_token")
+  resetPasswordTokenExpiresAt DateTime? @map("reset_password_token_expires_at")
+
   profile      Profile?
   measurements BodyMeasurement?
 
   recipes  Recipe[]
   comments Comment[]
   likes    Like[]
-  orders    Order[]
-  
+  orders   Order[]
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  
 
   @@map("users")
 }
@@ -28,7 +34,7 @@ model Profile {
   bio      String?
   gender   Gender?
 
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique @map("user_id")
 
   createdAt DateTime @default(now()) @map("created_at")
@@ -52,7 +58,7 @@ model BodyMeasurement {
   activityLevel ActivityLevel? @map("activity_level")
   nutritionGoal NutritionGoal? @map("nutrition_goal")
 
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique @map("user_id")
 
   createdAt DateTime @default(now()) @map("created_at")
