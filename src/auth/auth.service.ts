@@ -9,7 +9,8 @@ import { verify } from 'argon2'
 import { EmailService } from 'src/email/email.service'
 import { UsersService } from 'src/users/users.service'
 import { generateToken } from 'src/utils/generate-token.util'
-import  { AuthCookieService } from './auth-cookie.service'
+import { AuthAccountService } from './auth-account.service'
+import { AuthCookieService } from './auth-cookie.service'
 import type { TAuthTokenData } from './auth.interface'
 import { AuthInput } from './inputs/auth.input'
 
@@ -19,7 +20,8 @@ export class AuthService {
 		private configService: ConfigService,
 		private jwt: JwtService,
 		private userService: UsersService,
-		private emailService: EmailService
+		private emailService: EmailService,
+		private authAccountService: AuthAccountService
 	) {}
 
 	private readonly EXPIRE_HOURS_ACCESS_TOKEN = 1
@@ -94,7 +96,7 @@ export class AuthService {
 
 	private generateTokens(data: TAuthTokenData) {
 		const accessToken = this.jwt.sign(data, {
-			expiresIn: `${this.EXPIRE_HOURS_ACCESS_TOKEN}`
+			expiresIn: `${this.EXPIRE_HOURS_ACCESS_TOKEN}h`
 		})
 
 		const refreshToken = this.jwt.sign(data, {

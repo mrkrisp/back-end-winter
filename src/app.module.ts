@@ -14,6 +14,7 @@ import { PrismaModule } from './prisma/prisma.module'
 import { RecipesModule } from './recipes/recipes.module'
 import { UsersModule } from './users/users.module'
 import { EmailModule } from './email/email.module';
+import { MediaUploadModule } from './media-upload/media-upload.module';
 
 @Module({
 	imports: [
@@ -41,7 +42,8 @@ import { EmailModule } from './email/email.module';
 		RecipesModule,
 		OrdersModule,
 		PrismaModule,
-		EmailModule
+		EmailModule,
+		MediaUploadModule
 	],
 	controllers: [AppController],
 	providers: [AppService]

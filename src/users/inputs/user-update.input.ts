@@ -10,6 +10,9 @@ export class UserUpdateInput {
 	@Field(() => String, { nullable: true })
 	password?: string
 
+	@Field(() => String, { nullable: true })
+	avatarUrl?: string
+
 	@Field(() => ProfileUpdateInput, { nullable: true })
 	profile?: ProfileUpdateInput
 

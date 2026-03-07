@@ -1,14 +1,12 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import type { Response } from 'express'
-import { PrismaService } from 'src/prisma/prisma.service'
+import { Response } from 'express'
 import { isDev } from 'src/utils/is-dev.util'
 import { AuthService } from './auth.service'
 
 @Injectable()
 export class AuthCookieService {
 	constructor(
-		private readonly prisma: PrismaService,
 		private readonly authService: AuthService,
 		private readonly configService: ConfigService
 	) {}

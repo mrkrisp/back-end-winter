@@ -14,6 +14,12 @@ export class UserModel {
 	@Field(() => Role, { defaultValue: 'USER', nullable: false })
 	role!: `${Role}`
 
+	@Field(() => String, { nullable: true })
+	avatarUrl?: string
+
+	@Field(() => Boolean, { defaultValue: false })
+	isEmailVerified!: boolean
+
 	@Field(() => Date, { nullable: false })
 	createdAt!: Date
 

@@ -15,6 +15,23 @@ export class AuthAccountService {
 		private readonly emailService: EmailService
 	) {}
 
+	async requestVerifyEmail(email: string) {
+		const emailVerificationToken = generateToken()
+
+		await this.prisma.user.update({
+			where: { email },
+			data: {
+				emailVerificationToken
+			}
+		})
+
+		const verificationUrl = `${this.configService.getOrThrow<string>('CLIENT_URL')}/verify-email?token=${emailVerificationToken}`
+
+		await this.emailService.sendVerificationEmail(email, verificationUrl)
+
+		return true
+	}
+
 	async verifyEmail(token: string) {
 		const user = await this.prisma.user.findFirst({
 			where: {
@@ -57,7 +74,7 @@ export class AuthAccountService {
 			}
 		})
 
-		const resetUrl = `${this.configService.getOrThrow<string>('CLIENT_URL')}/verify-email?token=${resetToken}`
+		const resetUrl = `${this.configService.getOrThrow<string>('CLIENT_URL')}/reset-password?token=${resetToken}`
 
 		await this.emailService.sendResetPasswordEmail(email, resetUrl)
 

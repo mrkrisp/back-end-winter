@@ -30,7 +30,7 @@ export class UsersService {
 		})
 
 		if (!user) {
-			throw new NotFoundException('User is not found')
+			throw new NotFoundException('User was not found')
 		}
 
 		return user
@@ -110,7 +110,8 @@ export class UsersService {
 				...hashedPassword,
 				...updateProfile,
 				...updateMeasurements,
-				email: data.email
+				email: data.email,
+				avatarUrl: data.avatarUrl
 			},
 			include: {
 				profile: true,

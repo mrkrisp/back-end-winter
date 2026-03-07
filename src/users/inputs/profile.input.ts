@@ -3,8 +3,8 @@ import { Gender } from 'prisma/generated/enums'
 
 @InputType()
 export class ProfileUpdateInput {
-	@Field(() => String)
-	fullName!: string
+	@Field(() => String, { nullable: true })
+	fullName?: string
 
 	@Field(() => Gender, { nullable: true })
 	gender?: Gender | null

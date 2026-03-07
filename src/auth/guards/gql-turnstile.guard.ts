@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common'
 import { GqlExecutionContext } from '@nestjs/graphql'
 import { TurnstileService } from 'nest-cloudflare-turnstile/dist/services/turnstile.service'
-import type { IGqlContext } from 'src/app.interface'
+import { IGqlContext } from 'src/app.interface'
 
 interface ITurnstileResponse {
 	success: boolean
