@@ -7,10 +7,13 @@ import { RecipesQueryInput } from './inputs/get-recipes-query.input'
 export class RecipesService {
 	constructor(private prisma: PrismaService) {}
 
-	async getAll({ page, limit, searchTerm, sort }: RecipesQueryInput) {
+	async getAll(
+		{ page, limit, searchTerm, sort }: RecipesQueryInput,
+		userId?: string
+	) {
 		const skip = (page - 1) * limit
 
-		return this.prisma.recipe.findMany({
+		const recipes = await this.prisma.recipe.findMany({
 			skip,
 			take: limit,
 
@@ -36,6 +39,12 @@ export class RecipesService {
 				_count: {
 					select: { likes: true }
 				},
+				...(userId && {
+					likes: {
+						where: { userId },
+						select: { id: true }
+					}
+				}),
 				tags: true,
 				nutritionFact: true,
 				recipeIngredients: {
@@ -45,6 +54,15 @@ export class RecipesService {
 				},
 				recipeSteps: true,
 				comments: true
+			}
+		})
+
+		return recipes.map(recipe => {
+			return {
+				...recipe,
+				likesCount: recipe._count.likes,
+				isLiked: userId ? recipe.likes.length > 0 : false,
+				likes: undefined
 			}
 		})
 	}

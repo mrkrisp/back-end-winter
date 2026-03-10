@@ -5,7 +5,6 @@ import { AuthAccountService } from './auth-account.service'
 import { AuthCookieService } from './auth-cookie.service'
 import { AuthResponse } from './auth.interface'
 import { AuthService } from './auth.service'
-import { Auth } from './decorators/auth.decorator'
 import { VerifyCaptcha } from './decorators/captcha.decorator'
 import { AuthInput } from './inputs/auth.input'
 import { RequestPasswordResetInput } from './inputs/reset-password-request.input'
@@ -35,7 +34,7 @@ export class AuthResolver {
 	}
 
 	@Mutation(() => AuthResponse)
-	@VerifyCaptcha()
+	// @VerifyCaptcha()
 	async login(
 		@Args('data', { type: () => AuthInput }) input: AuthInput,
 		@Context() { res }: IGqlContext
@@ -50,7 +49,6 @@ export class AuthResolver {
 	}
 
 	@Mutation(() => Boolean)
-	@Auth()
 	async requestVerifyEmail(@Args('email') email: string) {
 		return this.authAccountService.requestVerifyEmail(email)
 	}

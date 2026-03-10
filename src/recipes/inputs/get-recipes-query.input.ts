@@ -9,7 +9,7 @@ export class RecipesQueryInput {
 	limit: number
 
 	@Field(() => String, { nullable: true })
-	searchTerm: string
+	searchTerm?: string
 
 	@Field(() => String, { nullable: true })
 	sort?: 'new' | 'recommended' | 'popular'

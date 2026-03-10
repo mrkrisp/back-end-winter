@@ -56,8 +56,11 @@ export class RecipeModel {
 	@Field(() => NutritionFactModel, { nullable: true })
 	nutritionFact?: NutritionFactModel | null
 
-	@Field(() => Int, { nullable: true })
-	likes?: number
+	@Field(() => Int, { nullable: false, defaultValue: 0 })
+	likesCount!: number
+
+	@Field(() => Boolean, { nullable: false, defaultValue: false })
+	isLiked!: boolean
 
 	@Field(() => [CommentModel], { nullable: true })
 	comments?: Array<CommentModel>
