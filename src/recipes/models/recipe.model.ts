@@ -1,10 +1,15 @@
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql'
 
-import { Difficulty } from '../recipe.enum'
-import { NutritionFactModel } from './nutrition-fact.model'
-
 import { UserModel } from 'src/users/models/user.model'
-import { CommentModel } from '../reaction/models/comment.model'
+import {
+	Cuisine,
+	DietaryPreference,
+	Difficulty,
+	HealthGoal,
+	MealType,
+	SpecialOccasion
+} from '../recipe.enum'
+import { NutritionFactModel } from './nutrition-fact.model'
 import { RecipeIngredientModel } from './recipe-ingredient.model'
 import { RecipeStepModel } from './recipe-step.model'
 import { RecipeTagModel } from './recipe-tag.model'
@@ -23,6 +28,9 @@ export class RecipeModel {
 	@Field(() => String, { nullable: false })
 	description!: string
 
+	@Field(() => String, { nullable: false })
+	image!: string
+
 	@Field(() => Int, { nullable: false })
 	calories!: number
 
@@ -31,6 +39,24 @@ export class RecipeModel {
 
 	@Field(() => Difficulty, { nullable: false })
 	difficulty!: `${Difficulty}`
+
+	@Field(() => MealType, { nullable: false })
+	mealType!: `${MealType}`
+
+	@Field(() => DietaryPreference, { nullable: false })
+	dietaryPreference!: `${DietaryPreference}`
+
+	@Field(() => HealthGoal, { nullable: false })
+	healthGoal!: `${HealthGoal}`
+
+	@Field(() => Cuisine, { nullable: false })
+	cuisine!: `${Cuisine}`
+
+	@Field(() => SpecialOccasion, { nullable: false })
+	specialOccasion!: `${SpecialOccasion}`
+
+	@Field(() => Int, { nullable: false })
+	views!: number
 
 	@Field(() => String, { nullable: false })
 	authorId!: string
@@ -42,26 +68,23 @@ export class RecipeModel {
 	updatedAt!: Date
 
 	@Field(() => UserModel, { nullable: false })
-	author!: UserModel
-
-	@Field(() => [RecipeTagModel], { nullable: true })
-	tags?: Array<RecipeTagModel>
-
-	@Field(() => [RecipeIngredientModel], { nullable: true })
-	recipeIngredients?: Array<RecipeIngredientModel>
-
-	@Field(() => [RecipeStepModel], { nullable: true })
-	recipeSteps?: Array<RecipeStepModel>
+	author?: UserModel
 
 	@Field(() => NutritionFactModel, { nullable: true })
 	nutritionFact?: NutritionFactModel | null
 
-	@Field(() => Int, { nullable: false, defaultValue: 0 })
-	likesCount!: number
+	@Field(() => [RecipeTagModel], { nullable: true })
+	tags?: Array<RecipeTagModel>
 
-	@Field(() => Boolean, { nullable: false, defaultValue: false })
-	isLiked!: boolean
+	@Field(() => [RecipeStepModel], { nullable: true })
+	recipeSteps?: Array<RecipeStepModel>
 
-	@Field(() => [CommentModel], { nullable: true })
-	comments?: Array<CommentModel>
+	@Field(() => [RecipeIngredientModel], { nullable: true })
+	recipeIngredients?: Array<RecipeIngredientModel>
+
+	@Field(() => Int, { nullable: true })
+	likes?: number
+
+	// @Field(() => [Comment], { nullable: true })
+	// comments?: Array<Comment>
 }

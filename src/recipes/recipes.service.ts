@@ -8,16 +8,31 @@ export class RecipesService {
 	constructor(private prisma: PrismaService) {}
 
 	async getAll(
-		{ page, limit, searchTerm, sort }: RecipesQueryInput,
+		{
+			page,
+			limit,
+			searchTerm,
+			sort,
+			cuisine,
+			dietaryPreference,
+			mealType,
+			healthGoal,
+			specialOccasion
+		}: RecipesQueryInput,
 		userId?: string
 	) {
 		const skip = (page - 1) * limit
 
-		const recipes = await this.prisma.recipe.findMany({
+		return await this.prisma.recipe.findMany({
 			skip,
 			take: limit,
 
 			where: {
+				...(mealType && { mealType }),
+				...(cuisine && { cuisine }),
+				...(dietaryPreference && { dietaryPreference }),
+				...(healthGoal && { healthGoal }),
+				...(specialOccasion && { specialOccasion }),
 				...(searchTerm && {
 					OR: [
 						{ title: { contains: searchTerm, mode: 'insensitive' } },
@@ -54,15 +69,6 @@ export class RecipesService {
 				},
 				recipeSteps: true,
 				comments: true
-			}
-		})
-
-		return recipes.map(recipe => {
-			return {
-				...recipe,
-				likesCount: recipe._count.likes,
-				isLiked: userId ? recipe.likes.length > 0 : false,
-				likes: undefined
 			}
 		})
 	}

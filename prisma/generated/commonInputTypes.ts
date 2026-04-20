@@ -166,6 +166,41 @@ export type EnumDifficultyFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumDifficultyFilter<$PrismaModel> | $Enums.Difficulty
 }
 
+export type EnumMealTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealType | Prisma.EnumMealTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealTypeFilter<$PrismaModel> | $Enums.MealType
+}
+
+export type EnumDietaryPreferenceFilter<$PrismaModel = never> = {
+  equals?: $Enums.DietaryPreference | Prisma.EnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  in?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDietaryPreferenceFilter<$PrismaModel> | $Enums.DietaryPreference
+}
+
+export type EnumHealthGoalFilter<$PrismaModel = never> = {
+  equals?: $Enums.HealthGoal | Prisma.EnumHealthGoalFieldRefInput<$PrismaModel>
+  in?: $Enums.HealthGoal[] | Prisma.ListEnumHealthGoalFieldRefInput<$PrismaModel>
+  notIn?: $Enums.HealthGoal[] | Prisma.ListEnumHealthGoalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumHealthGoalFilter<$PrismaModel> | $Enums.HealthGoal
+}
+
+export type EnumCuisineFilter<$PrismaModel = never> = {
+  equals?: $Enums.Cuisine | Prisma.EnumCuisineFieldRefInput<$PrismaModel>
+  in?: $Enums.Cuisine[] | Prisma.ListEnumCuisineFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Cuisine[] | Prisma.ListEnumCuisineFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCuisineFilter<$PrismaModel> | $Enums.Cuisine
+}
+
+export type EnumSpecialOccasionFilter<$PrismaModel = never> = {
+  equals?: $Enums.SpecialOccasion | Prisma.EnumSpecialOccasionFieldRefInput<$PrismaModel>
+  in?: $Enums.SpecialOccasion[] | Prisma.ListEnumSpecialOccasionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SpecialOccasion[] | Prisma.ListEnumSpecialOccasionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSpecialOccasionFilter<$PrismaModel> | $Enums.SpecialOccasion
+}
+
 export type IntWithAggregatesFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -190,6 +225,56 @@ export type EnumDifficultyWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumDifficultyFilter<$PrismaModel>
   _max?: Prisma.NestedEnumDifficultyFilter<$PrismaModel>
+}
+
+export type EnumMealTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealType | Prisma.EnumMealTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealTypeWithAggregatesFilter<$PrismaModel> | $Enums.MealType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMealTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMealTypeFilter<$PrismaModel>
+}
+
+export type EnumDietaryPreferenceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DietaryPreference | Prisma.EnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  in?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDietaryPreferenceWithAggregatesFilter<$PrismaModel> | $Enums.DietaryPreference
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDietaryPreferenceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDietaryPreferenceFilter<$PrismaModel>
+}
+
+export type EnumHealthGoalWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.HealthGoal | Prisma.EnumHealthGoalFieldRefInput<$PrismaModel>
+  in?: $Enums.HealthGoal[] | Prisma.ListEnumHealthGoalFieldRefInput<$PrismaModel>
+  notIn?: $Enums.HealthGoal[] | Prisma.ListEnumHealthGoalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumHealthGoalWithAggregatesFilter<$PrismaModel> | $Enums.HealthGoal
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumHealthGoalFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumHealthGoalFilter<$PrismaModel>
+}
+
+export type EnumCuisineWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Cuisine | Prisma.EnumCuisineFieldRefInput<$PrismaModel>
+  in?: $Enums.Cuisine[] | Prisma.ListEnumCuisineFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Cuisine[] | Prisma.ListEnumCuisineFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCuisineWithAggregatesFilter<$PrismaModel> | $Enums.Cuisine
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCuisineFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCuisineFilter<$PrismaModel>
+}
+
+export type EnumSpecialOccasionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SpecialOccasion | Prisma.EnumSpecialOccasionFieldRefInput<$PrismaModel>
+  in?: $Enums.SpecialOccasion[] | Prisma.ListEnumSpecialOccasionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SpecialOccasion[] | Prisma.ListEnumSpecialOccasionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSpecialOccasionWithAggregatesFilter<$PrismaModel> | $Enums.SpecialOccasion
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSpecialOccasionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSpecialOccasionFilter<$PrismaModel>
 }
 
 export type EnumUnitFilter<$PrismaModel = never> = {
@@ -531,6 +616,41 @@ export type NestedEnumDifficultyFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumDifficultyFilter<$PrismaModel> | $Enums.Difficulty
 }
 
+export type NestedEnumMealTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealType | Prisma.EnumMealTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealTypeFilter<$PrismaModel> | $Enums.MealType
+}
+
+export type NestedEnumDietaryPreferenceFilter<$PrismaModel = never> = {
+  equals?: $Enums.DietaryPreference | Prisma.EnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  in?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDietaryPreferenceFilter<$PrismaModel> | $Enums.DietaryPreference
+}
+
+export type NestedEnumHealthGoalFilter<$PrismaModel = never> = {
+  equals?: $Enums.HealthGoal | Prisma.EnumHealthGoalFieldRefInput<$PrismaModel>
+  in?: $Enums.HealthGoal[] | Prisma.ListEnumHealthGoalFieldRefInput<$PrismaModel>
+  notIn?: $Enums.HealthGoal[] | Prisma.ListEnumHealthGoalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumHealthGoalFilter<$PrismaModel> | $Enums.HealthGoal
+}
+
+export type NestedEnumCuisineFilter<$PrismaModel = never> = {
+  equals?: $Enums.Cuisine | Prisma.EnumCuisineFieldRefInput<$PrismaModel>
+  in?: $Enums.Cuisine[] | Prisma.ListEnumCuisineFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Cuisine[] | Prisma.ListEnumCuisineFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCuisineFilter<$PrismaModel> | $Enums.Cuisine
+}
+
+export type NestedEnumSpecialOccasionFilter<$PrismaModel = never> = {
+  equals?: $Enums.SpecialOccasion | Prisma.EnumSpecialOccasionFieldRefInput<$PrismaModel>
+  in?: $Enums.SpecialOccasion[] | Prisma.ListEnumSpecialOccasionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SpecialOccasion[] | Prisma.ListEnumSpecialOccasionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSpecialOccasionFilter<$PrismaModel> | $Enums.SpecialOccasion
+}
+
 export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel>
@@ -566,6 +686,56 @@ export type NestedEnumDifficultyWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumDifficultyFilter<$PrismaModel>
   _max?: Prisma.NestedEnumDifficultyFilter<$PrismaModel>
+}
+
+export type NestedEnumMealTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.MealType | Prisma.EnumMealTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.MealType[] | Prisma.ListEnumMealTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumMealTypeWithAggregatesFilter<$PrismaModel> | $Enums.MealType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumMealTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumMealTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumDietaryPreferenceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DietaryPreference | Prisma.EnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  in?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumDietaryPreferenceWithAggregatesFilter<$PrismaModel> | $Enums.DietaryPreference
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDietaryPreferenceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDietaryPreferenceFilter<$PrismaModel>
+}
+
+export type NestedEnumHealthGoalWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.HealthGoal | Prisma.EnumHealthGoalFieldRefInput<$PrismaModel>
+  in?: $Enums.HealthGoal[] | Prisma.ListEnumHealthGoalFieldRefInput<$PrismaModel>
+  notIn?: $Enums.HealthGoal[] | Prisma.ListEnumHealthGoalFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumHealthGoalWithAggregatesFilter<$PrismaModel> | $Enums.HealthGoal
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumHealthGoalFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumHealthGoalFilter<$PrismaModel>
+}
+
+export type NestedEnumCuisineWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.Cuisine | Prisma.EnumCuisineFieldRefInput<$PrismaModel>
+  in?: $Enums.Cuisine[] | Prisma.ListEnumCuisineFieldRefInput<$PrismaModel>
+  notIn?: $Enums.Cuisine[] | Prisma.ListEnumCuisineFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCuisineWithAggregatesFilter<$PrismaModel> | $Enums.Cuisine
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCuisineFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCuisineFilter<$PrismaModel>
+}
+
+export type NestedEnumSpecialOccasionWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.SpecialOccasion | Prisma.EnumSpecialOccasionFieldRefInput<$PrismaModel>
+  in?: $Enums.SpecialOccasion[] | Prisma.ListEnumSpecialOccasionFieldRefInput<$PrismaModel>
+  notIn?: $Enums.SpecialOccasion[] | Prisma.ListEnumSpecialOccasionFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumSpecialOccasionWithAggregatesFilter<$PrismaModel> | $Enums.SpecialOccasion
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumSpecialOccasionFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumSpecialOccasionFilter<$PrismaModel>
 }
 
 export type NestedEnumUnitFilter<$PrismaModel = never> = {

@@ -28,6 +28,60 @@ export const Difficulty = {
 export type Difficulty = (typeof Difficulty)[keyof typeof Difficulty]
 
 
+export const MealType = {
+  BREAKFAST: 'BREAKFAST',
+  LUNCH: 'LUNCH',
+  DINNER: 'DINNER',
+  SNACK: 'SNACK',
+  DESSERT: 'DESSERT',
+  DRINKS: 'DRINKS'
+} as const
+
+export type MealType = (typeof MealType)[keyof typeof MealType]
+
+
+export const DietaryPreference = {
+  VEGETARIAN: 'VEGETARIAN',
+  LOW_CARB: 'LOW_CARB',
+  GLUTEN_FREE: 'GLUTEN_FREE',
+  KETO: 'KETO',
+  DAIRY_FREE: 'DAIRY_FREE'
+} as const
+
+export type DietaryPreference = (typeof DietaryPreference)[keyof typeof DietaryPreference]
+
+
+export const HealthGoal = {
+  WEIGHT_LOSS: 'WEIGHT_LOSS',
+  MUSCLE_GAIN: 'MUSCLE_GAIN',
+  HEART_HEALTH: 'HEART_HEALTH'
+} as const
+
+export type HealthGoal = (typeof HealthGoal)[keyof typeof HealthGoal]
+
+
+export const Cuisine = {
+  RUSSIAN: 'RUSSIAN',
+  ITALIAN: 'ITALIAN',
+  CHINESE: 'CHINESE',
+  MEXICAN: 'MEXICAN',
+  INDIAN: 'INDIAN',
+  FRENCH: 'FRENCH'
+} as const
+
+export type Cuisine = (typeof Cuisine)[keyof typeof Cuisine]
+
+
+export const SpecialOccasion = {
+  HOLIDAY: 'HOLIDAY',
+  BIRTHDAY: 'BIRTHDAY',
+  ANNIVERSARY: 'ANNIVERSARY',
+  PARTY: 'PARTY'
+} as const
+
+export type SpecialOccasion = (typeof SpecialOccasion)[keyof typeof SpecialOccasion]
+
+
 export const Unit = {
   MILLILITER: 'MILLILITER',
   GRAM: 'GRAM',

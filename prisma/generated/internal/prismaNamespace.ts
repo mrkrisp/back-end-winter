@@ -1570,9 +1570,15 @@ export const RecipeScalarFieldEnum = {
   slug: 'slug',
   title: 'title',
   description: 'description',
+  image: 'image',
   calories: 'calories',
   cookingTime: 'cookingTime',
   difficulty: 'difficulty',
+  mealType: 'mealType',
+  dietaryPreference: 'dietaryPreference',
+  healthGoal: 'healthGoal',
+  cuisine: 'cuisine',
+  specialOccasion: 'specialOccasion',
   views: 'views',
   authorId: 'authorId',
   createdAt: 'createdAt',
@@ -1624,6 +1630,7 @@ export const RecipeStepScalarFieldEnum = {
   order: 'order',
   title: 'title',
   description: 'description',
+  image: 'image',
   recipeId: 'recipeId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -1794,6 +1801,76 @@ export type EnumDifficultyFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
  * Reference to a field of type 'Difficulty[]'
  */
 export type ListEnumDifficultyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Difficulty[]'>
+    
+
+
+/**
+ * Reference to a field of type 'MealType'
+ */
+export type EnumMealTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MealType'>
+    
+
+
+/**
+ * Reference to a field of type 'MealType[]'
+ */
+export type ListEnumMealTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MealType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DietaryPreference'
+ */
+export type EnumDietaryPreferenceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DietaryPreference'>
+    
+
+
+/**
+ * Reference to a field of type 'DietaryPreference[]'
+ */
+export type ListEnumDietaryPreferenceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DietaryPreference[]'>
+    
+
+
+/**
+ * Reference to a field of type 'HealthGoal'
+ */
+export type EnumHealthGoalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HealthGoal'>
+    
+
+
+/**
+ * Reference to a field of type 'HealthGoal[]'
+ */
+export type ListEnumHealthGoalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HealthGoal[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Cuisine'
+ */
+export type EnumCuisineFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Cuisine'>
+    
+
+
+/**
+ * Reference to a field of type 'Cuisine[]'
+ */
+export type ListEnumCuisineFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Cuisine[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SpecialOccasion'
+ */
+export type EnumSpecialOccasionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SpecialOccasion'>
+    
+
+
+/**
+ * Reference to a field of type 'SpecialOccasion[]'
+ */
+export type ListEnumSpecialOccasionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SpecialOccasion[]'>
     
 
 

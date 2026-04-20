@@ -18,7 +18,8 @@
 		"test:cov": "jest --coverage",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
 		"test:e2e": "jest --config ./test/jest-e2e.json",
-		"mg": "yarn prisma migrate dev --name $@ && yarn prisma generate"
+		"mg": "yarn prisma migrate dev --name $@ && yarn prisma generate",
+		"db:seed": "bun seed/recipe.seed.ts"
 	},
 	"dependencies": {
 		"@apollo/server": "^5.3.0",
@@ -66,6 +67,7 @@
 		"@types/multer": "^2.0.0",
 		"@types/node": "^22.10.7",
 		"@types/passport-jwt": "^4.0.1",
+		"@types/pg": "^8.20.0",
 		"@types/react": "^19.2.14",
 		"@types/supertest": "^6.0.2",
 		"class-transformer": "^0.5.1",

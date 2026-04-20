@@ -1,5 +1,12 @@
 import { Field, InputType, Int } from '@nestjs/graphql'
-import { Difficulty } from '../recipe.enum'
+import {
+	Cuisine,
+	DietaryPreference,
+	Difficulty,
+	HealthGoal,
+	MealType,
+	SpecialOccasion
+} from '../recipe.enum'
 import { NutritionFactUpdateInput } from './nutrition-fact.input'
 import { RecipeIngredientInput } from './recipe-ingredient.input'
 import { RecipeStepInput } from './recipe-step.input'
@@ -15,6 +22,9 @@ export class RecipeCreateInput {
 	@Field(() => String, { nullable: false })
 	description!: string
 
+	@Field(() => String, { nullable: false })
+	image!: string
+
 	@Field(() => Int, { nullable: false })
 	calories!: number
 
@@ -23,6 +33,21 @@ export class RecipeCreateInput {
 
 	@Field(() => Difficulty, { nullable: false })
 	difficulty!: `${Difficulty}`
+
+	@Field(() => MealType, { nullable: false })
+	mealType!: `${MealType}`
+
+	@Field(() => DietaryPreference, { nullable: false })
+	dietaryPreference!: `${DietaryPreference}`
+
+	@Field(() => HealthGoal, { nullable: false })
+	healthGoal!: `${HealthGoal}`
+
+	@Field(() => Cuisine, { nullable: false })
+	cuisine!: `${Cuisine}`
+
+	@Field(() => SpecialOccasion, { nullable: false })
+	specialOccasion!: `${SpecialOccasion}`
 
 	@Field(() => [String], { nullable: true })
 	tags?: string[]
@@ -52,6 +77,9 @@ export class RecipeUpdateInput {
 	@Field(() => String, { nullable: true })
 	description?: string
 
+	@Field(() => String, { nullable: false })
+	image?: string
+
 	@Field(() => Int, { nullable: true })
 	calories?: number
 
@@ -60,6 +88,21 @@ export class RecipeUpdateInput {
 
 	@Field(() => Difficulty, { nullable: true })
 	difficulty?: `${Difficulty}`
+
+	@Field(() => MealType, { nullable: true })
+	mealType?: `${MealType}`
+
+	@Field(() => DietaryPreference, { nullable: true })
+	dietaryPreference?: `${DietaryPreference}`
+
+	@Field(() => HealthGoal, { nullable: true })
+	healthGoal?: `${HealthGoal}`
+
+	@Field(() => Cuisine, { nullable: true })
+	cuisine?: `${Cuisine}`
+
+	@Field(() => SpecialOccasion, { nullable: true })
+	specialOccasion?: `${SpecialOccasion}`
 
 	@Field(() => [String], { nullable: true })
 	tags?: string[]
